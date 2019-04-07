@@ -1,0 +1,13 @@
+# Twitch Streamers Search [COMP3133 Hackathon]
+## Team Members
+| Role | Name |
+| -------- | -------- |
+| Front-End Developer  | Jullian Anthony Sy-Lucero  |
+| Back-End Developer | Jacky Phung |
+## Project Setup
+### Initial Setup
+Before getting started... please run `npm install -g yarn` (or if on macOS or Linux make sure to run it with `sudo`)
+1. Run `yarn install` / `yarn` (however, its possible `npm install` would work, but I wouldn't recommend it. - Jullian)
+### Running the server
+So, there really isn't much for server running, here are the steps:
+1. Run `yarn start:dev` (or `npm run start:dev` if you don't want to use `yarn`)
