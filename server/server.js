@@ -14,10 +14,6 @@ const mongoose = require('mongoose');
 const apiRoutes = {
   default: require('./routes/api/api.default'),
   auth: require('./routes/api/auth'),
-  users: require('./routes/api/users'),
-  art: require('./routes/api/art'),
-  journals: require('./routes/api/journals'),
-  comments: require('./routes/api/comments')
 };
 
 // require the main route for the app
@@ -47,10 +43,6 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 // this is where we declare our API routes
 // and also apply the routers that we specified above
 app.use('/api/auth', apiRoutes.auth);
-app.use('/api/users', apiRoutes.users);
-app.use('/api/art', apiRoutes.art);
-app.use('/api/journals', apiRoutes.journals);
-app.use('/api/comments', apiRoutes.comments);
 app.use('/api/', apiRoutes.default);
 
 // application route
