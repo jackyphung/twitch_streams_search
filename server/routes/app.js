@@ -2,8 +2,6 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var userRoutes = require('./api/users');
-
 
 router.use((req, res, next) => {
   next();
