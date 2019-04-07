@@ -10,10 +10,27 @@ import './Home.css';
 import { UserAuthSubscriber } from 'services';
 
 class Home extends Component {
-
 	constructor(props) {
 		super(props);
 	}
+
+	state = {  
+		
+	}
+
+	static getDerivedStateFromProps(nextProps, prevState) {
+    let state = { };
+    if (prevState) {
+      for (let key in nextProps) {
+        if (prevState.hasOwnProperty(key)) {
+          if (nextProps[key] !== prevState[key])
+            state[key] = nextProps[key];
+        }
+      }
+    }
+    
+    return state;
+  }
 
 	componentDidMount() {
     let page = "Search A Streamer!";
@@ -31,7 +48,9 @@ class Home extends Component {
 			<UserAuthSubscriber>
 				{ auth => (
 					<ContentArea FooterContent={<FooterContent/>}>
+						<ContentBlock size="10">
 
+						</ContentBlock>
 					</ContentArea>
 				)}
 			</UserAuthSubscriber>
