@@ -10,6 +10,7 @@
 | | Dindyal Mursingh | 101093659 |
 | | Kevin Lei | 101015906 |
 ## Project Setup
+### Heroku URL: https://comp3133-twitch-gods.herokuapp.com/
 ### Initial Setup
 Before getting started... please run `npm install -g yarn` (or if on macOS or Linux make sure to run it with `sudo`)
 1. Run `yarn install` / `yarn` (however, its possible `npm install` would work, but I wouldn't recommend it. - Jullian)
