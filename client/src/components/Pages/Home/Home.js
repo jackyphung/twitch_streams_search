@@ -25,6 +25,8 @@ class Home extends Component {
 
   state = {};
 
+	timer = null;
+
   static getDerivedStateFromProps(nextProps, prevState) {
     let state = {};
     if (prevState) {
@@ -49,28 +51,41 @@ class Home extends Component {
     }
   }
 
-  getUserData(e) {
-    if (e.target.value.trim().length) {
-      helix
-        .get("users", {
+  getUserData = (e) => {
+		const getData = (value) => {
+			helix.get("users", {
           params: {
-            login: e.target.value
+            login: value
           }
         })
-        .then(function(response) {
-          this.setState({ user_data: response.data["data"][0] });
+        .then((response) => {
+					if (response.data['data'].length){
+						console.log(response.data["data"][0]);
+						this.setState({ user_data: response.data["data"][0]}, () => {
+							console.log(this.state.user_data)
+							this.getStreamData(this.state.user_data.id)
+						});
+					}
+
         });
+		}	
+		if (this.timer) {
+			clearTimeout(this.timer)
+		}
+    if (e.target.value.trim().length) {
+			this.timer = setTimeout(getData(e.target.value), 3000)
     }
   }
 
-  getStreamData() {
+  getStreamData = (id) => {
     helix
       .get("streams", {
         params: {
-          user_id: this.state.user_data
+          user_id: id
         }
       })
-      .then(function(response) {
+      .then((response) => {
+				console.log(response.data["data"][0])
         this.setState({ stream_data: response.data["data"][0] });
       });
   }
