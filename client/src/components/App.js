@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import history from 'History';
 import { Switch, Route } from 'react-router-dom';
 import 'assets/css/App.css';
+import 'assets/css/Colors.css';
 import 'assets/css/General.css';
 import 'assets/css/Users.css';
 import { ContentBody, NavBar, NavSection, NavLink } from 'Layout';
@@ -21,9 +22,9 @@ class App extends Component {
           <div className="App">
             <ContentBody>
           
-              <NavBar>
+              <NavBar className="twitch-purple">
                 <NavSection align="left">
-                  
+                  <input className="twitch-dark" type="text" placeholder="Search Twitch Streamer" />
                 </NavSection>
               </NavBar>
               

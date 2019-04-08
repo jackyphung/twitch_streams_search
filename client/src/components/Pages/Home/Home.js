@@ -5,8 +5,9 @@ Home
 import React, { Component } from 'react';
 import { NavFooter, ContentArea, ContentBlock } from 'Layout';
 import { FooterContent } from 'Sections';
+//import TwitchLogo from 'assets/svg/Twitch_Purple_RGB.svg';
+import axios from 'axios';
 import './Home.css';
-import axios from 'axios'
 
 import { UserAuthSubscriber } from 'services';
 
@@ -49,7 +50,7 @@ class Home extends Component {
       document.title = title.join(" | ");
     } else {
       document.title = `${document.title} | ${page}`;
-    }
+		}
 	}
 
 	getUserData() {
@@ -69,8 +70,23 @@ class Home extends Component {
 			<UserAuthSubscriber>
 				{ auth => (
 					<ContentArea FooterContent={<FooterContent/>}>
-						<ContentBlock size="10">
-
+						<ContentBlock className="v-padding-25" style={{ minHeight: "calc(100vh - 96px)", textAlign: "center" }} size="10">
+							<input type="text" placeholder="Search Twitch Streamer" />
+							{ Object.keys(this.state).length ?
+								<React.Fragment>
+									
+								</React.Fragment>
+								:
+								<React.Fragment>
+									<h1 style={{ fontWeight: "normal" }}>
+										Welcome visitor! You may wonder what to do with this application...
+									</h1>
+									<h2 style={{ fontWeight: "normal" }}>
+										This application serves a purpose to search for any Twitch Streamer and see their details
+									</h2>
+									{/* <TwitchLogo /> */}
+								</React.Fragment>
+							}
 						</ContentBlock>
 					</ContentArea>
 				)}

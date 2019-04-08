@@ -30,10 +30,10 @@ class ContentArea extends Component {
   }
 
   render() {
-    const { children, FooterContent, style } = this.props;
+    const { children, className, FooterContent, style } = this.props;
     const { footer } = this.state;
     return (
-      <div className="content-area" style={style ? style : null}>
+      <div className={`content-area${className ? ` ${className}` : null}`} style={style ? style : null}>
         {children}
         {footer &&
           <NavFooter>

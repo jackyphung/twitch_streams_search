@@ -154,6 +154,7 @@ input:not([type=button]):not([type=checkbox]), textarea, select {
   background: rgb(253, 253, 253);
   border: 1px solid rgb(191, 207, 214);
   border-radius: 3px;
+  outline: none;
 
   font-family: -apple-system,
                BlinkMacSystemFont,

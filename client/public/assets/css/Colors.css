@@ -1,0 +1,32 @@
+.twitch-purple,
+div.twitch-purple {
+  background: #4b367c;
+  color: white;
+}
+
+.twitch-dark,
+div.twitch-dark {
+  background: #0f0e11;
+  color: white;
+}
+
+input[type=text]:not([type=checkbox]).twitch-dark {
+  background-color: rgba(0,0,0,.2);
+  border: 1px solid hsla(0,0%,100%,.15);
+  color: #faf9fa;
+}
+
+
+input[type=text]:not([type=checkbox]).twitch-dark:hover,
+input[type=text]:not([type=checkbox]).twitch-dark:active,
+input[type=text]:not([type=checkbox]).twitch-dark:focus-within {
+  background: #0f0e11;
+  background-clip: padding-box;
+  border: 1px solid #392e5c;
+  color: #faf9fa;
+}
+
+input[type=text]:not([type=checkbox]).twitch-dark:focus {
+  border-color: #7d5bbe;
+  box-shadow: 0 0 6 -2px #7d5bbe;
+}
