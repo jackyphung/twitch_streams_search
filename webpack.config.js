@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const CleanTerminalPlugin = require('clean-terminal-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -53,7 +54,7 @@ module.exports = {
     },
     {
       test: /\.svg$/,
-      loader: 'svg-inline-loader'
+      loader: 'babel-loader!svg-react-loader'
     }]
   },
   devServer: {
@@ -88,7 +89,8 @@ module.exports = {
       template: "./client/public/index.html",
       inject: false,
       hash: true
-    })
+    }),
+    new CleanTerminalPlugin()
   ],
   devtool: 'cheap-module-source-map',
   optimization: {

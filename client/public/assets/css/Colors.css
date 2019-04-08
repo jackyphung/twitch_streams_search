@@ -10,6 +10,11 @@ div.twitch-dark {
   color: white;
 }
 
+.twitch-dark2 {
+  background: #19171c;
+  color: white;
+}
+
 input[type=text]:not([type=checkbox]).twitch-dark {
   background-color: rgba(0,0,0,.2);
   border: 1px solid hsla(0,0%,100%,.15);
@@ -29,4 +34,8 @@ input[type=text]:not([type=checkbox]).twitch-dark:focus-within {
 input[type=text]:not([type=checkbox]).twitch-dark:focus {
   border-color: #7d5bbe;
   box-shadow: 0 0 6 -2px #7d5bbe;
+}
+
+input[type=text]:not([type=checkbox]).twitch-dark::placeholder {
+  color: white;
 }

@@ -42,6 +42,7 @@
     "webpack": "^4.19.0"
   },
   "scripts": {
+    "start": "npm run start:server",
     "start:server": "webpack && nodemon --exec babel-node -- bin/www",
     "start:dev": "npm-run-all --parallel start:server WDS",
     "setup": "yarn install && yarn start",
@@ -54,9 +55,11 @@
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.24.1",
+    "clean-terminal-webpack-plugin": "^2.0.2",
     "css-loader": "^2.1.1",
     "ejs-loader": "^0.3.1",
     "error-overlay-webpack-plugin": "^0.1.6",
+    "svg-react-loader": "^0.4.6",
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.2.1",
     "webpack-hot-middleware": "^2.24.3"

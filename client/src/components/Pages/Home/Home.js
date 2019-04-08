@@ -3,9 +3,9 @@ Component
 Home
 */
 import React, { Component } from "react";
-import { NavFooter, ContentArea, ContentBlock } from "Layout";
+import { NavFooter, ContentArea, ContentBlock, Link } from "Layout";
 import { FooterContent } from "Sections";
-//import TwitchLogo from 'assets/svg/Twitch_Purple_RGB.svg';
+import TwitchLogo from 'assets/svg/Twitch_Purple_RGB.svg';
 import axios from "axios";
 import "./Home.css";
 
@@ -23,7 +23,10 @@ class Home extends Component {
     super(props);
   }
 
-  state = {};
+  state = {
+		user_data: {},
+		stream_data: {}
+	};
 
 	timer = null;
 
@@ -49,32 +52,29 @@ class Home extends Component {
     } else {
       document.title = `${document.title} | ${page}`;
     }
-  }
-
-  getUserData = (e) => {
-		const getData = (value) => {
-			helix.get("users", {
-          params: {
-            login: value
-          }
-        })
-        .then((response) => {
-					if (response.data['data'].length){
-						console.log(response.data["data"][0]);
-						this.setState({ user_data: response.data["data"][0]}, () => {
-							console.log(this.state.user_data)
-							this.getStreamData(this.state.user_data.id)
-						});
-					}
-
-        });
-		}	
-		if (this.timer) {
-			clearTimeout(this.timer)
+	}
+	
+	componentDidUpdate() {
+		const { username } = this.props;
+		if (username) {
+			this.getUserData(username);
 		}
-    if (e.target.value.trim().length) {
-			this.timer = setTimeout(getData(e.target.value), 3000)
-    }
+	}
+
+  getUserData = (username) => {
+		helix.get("users", {
+			params: {
+				login: username
+			}
+		})
+		.then((response) => {
+			if (response.data['data'].length){
+				console.log(response.data["data"][0]);
+				this.setState({ user_data: response.data["data"][0]}, () => {
+					this.getStreamData(this.state.user_data.id)
+				});
+			}
+		});
   }
 
   getStreamData = (id) => {
@@ -85,28 +85,69 @@ class Home extends Component {
         }
       })
       .then((response) => {
-				console.log(response.data["data"][0])
-        this.setState({ stream_data: response.data["data"][0] });
+				if (response.data["data"].length) {
+					console.log(response.data["data"][0])
+					this.setState({ stream_data: response.data["data"][0] });
+				}
       });
   }
 
   render() {
+		const { user_data, stream_data } = this.state;
+		console.log(stream_data);
     return (
       <UserAuthSubscriber>
         {auth => (
-          <ContentArea FooterContent={<FooterContent />}>
+          <ContentArea footer={false}>
             <ContentBlock
-              className="v-padding-25"
-              style={{ minHeight: "calc(100vh - 96px)", textAlign: "center" }}
+              className={`v-padding-25 streamer-block${Object.keys(user_data).length ? ` d-flex`: ``}`}
+              style={{ minHeight: "calc(100vh - 48px)", textAlign: "center", background: Object.keys(user_data).length ? `black` /* `url(${user_data.offline_image_url})` */ : null }}
               size="10"
             >
-              <input
-                type="text"
-                placeholder="Search Twitch Streamer"
-                onChange={this.getUserData}
-              />
-              {Object.keys(this.state).length ? (
-                <React.Fragment />
+              {Object.keys(user_data).length ? (
+                <React.Fragment>
+									<div className="user-profile twitch-dark2" style={{ flexBasis: "250px", minWidth: "250px", maxWidth: "250px", minHeight: "100%" }}>
+										<Link Url={`https://twitch.tv/${user_data.login}`}>
+											<div className="user-picture" style={{ backgroundImage: `url('${user_data.profile_image_url}')` }}/>
+										</Link>
+										<div className="user-info padding-10">
+											<Link Url={`https://twitch.tv/${user_data.login}`}><h1>{user_data.display_name}</h1></Link>
+											<div className="description">
+												{user_data.description}
+											</div>
+											<div className="view-count">
+												<span>Viewers</span><br/>
+												{user_data.view_count}
+											</div>
+											{ Object.keys(stream_data).length ?
+												<div className="stream-info">
+                          <div className="title">
+                            <span>Title</span>
+                            <br/>{stream_data.title}
+                          </div>
+                          <div className="status">
+                            <span>Status</span>
+                            <br/>{stream_data.type}
+                          </div>
+													<div className="current-viewers">
+														<span>Currently Viewing</span>
+														<br/>{stream_data.viewer_count}
+													</div>
+												</div>
+												: null
+											}
+										</div>
+									</div>
+									<div className="stream-video-player w-grow">
+										<iframe
+											style={{ minWidth: "100%", maxWidth: "100%", minHeight: "100%", maxHeight: "100%" }}
+											src={`https://player.twitch.tv/?channel=${user_data.login}`}
+											frameborder="<frameborder>"
+											scrolling="<scrolling>"
+											allowfullscreen>
+										</iframe>
+									</div>
+								</React.Fragment>
               ) : (
                 <React.Fragment>
                   <h1 style={{ fontWeight: "normal" }}>
@@ -117,7 +158,7 @@ class Home extends Component {
                     This application serves a purpose to search for any Twitch
                     Streamer and see their details
                   </h2>
-                  {/* <TwitchLogo /> */}
+                  <TwitchLogo className="logo-animate" style={{ maxWidth: "600px", height: "auto" }} />
                 </React.Fragment>
               )}
             </ContentBlock>
