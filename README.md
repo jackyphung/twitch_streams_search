@@ -6,7 +6,7 @@
 | Back-End Developer | Jacky Phung | 100801047 |
 | | Jarone Rodney | 101077225 |
 | | Charles Santiago | 101084441 |
-| | Veronica Cheren | |
+| | Veronica Cheren | 100831208 |
 | | Dindyal Mursingh | 101093659 |
 | | Kevin Lei | 101015906 |
 ## Project Setup
