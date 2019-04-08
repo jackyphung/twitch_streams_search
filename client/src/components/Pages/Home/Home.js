@@ -53,15 +53,23 @@ class Home extends Component {
 		}
 	}
 
-	getUserData() {
-		this.helix.get('users').then(function (response) {
-			this.setState({user_data: response.data})
+	getUserData(e) {
+		helix.get('users', {
+			params: {
+				login: e.target.value
+			}
+		}).then(function (response) {
+			this.setState({user_data: response.data["data"][0]})
 		});
 	}
 
 	getStreamData() {
-		this.helix.get('streams').then(function (response) {
-			this.setState({user_data: response.data})
+		helix.get('streams', {
+			params: {
+				user_id : this.state.user_data
+			}
+		}).then(function (response) {
+			this.setState({stream_data: response.data["data"][0]})
 		});
 	}
 
