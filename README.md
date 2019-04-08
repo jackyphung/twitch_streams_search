@@ -1,9 +1,13 @@
 # Twitch Streamers Search [COMP3133 Hackathon]
 ## Team Members
-| Role | Name |
-| -------- | -------- |
-| Front-End Developer  | Jullian Anthony Sy-Lucero  |
-| Back-End Developer | Jacky Phung |
+| Role | Name | Student ID |
+| -------- | -------- | -------- |
+| Front-End Developer  | Jullian Anthony Sy-Lucero  | 100998164 |
+| Back-End Developer | Jacky Phung | 100801047 |
+| | Jarone Rodney | 101077225 |
+| | Charles Santiago | 101084441 |
+| | Veronica Cheren | 
+| | Dindyal Mursingh | 101093659 |
 ## Project Setup
 ### Initial Setup
 Before getting started... please run `npm install -g yarn` (or if on macOS or Linux make sure to run it with `sudo`)
