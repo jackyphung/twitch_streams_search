@@ -61,3 +61,35 @@ Home
 .user-info .stream-info > .status {
   text-transform: capitalize;
 }
+
+.search-error {
+  z-indeX: 9998;
+  position: fixed;
+  top: 60px; left: 100px;
+  padding: 15px 25px;
+
+  background: #322f37;
+  color: #b8b5c0;
+
+  border: 1px solid rgba(255, 100, 100, 0.125);
+  border-radius: 3px;
+
+  transition: all ease-in 0.125s;
+  animation: drop-in ease-in-out 0.5s forwards;
+
+  user-select: none;
+}
+
+@keyframes drop-in {
+  0% {
+    top: -10%;
+    box-shadow: none;
+  }
+  50% {
+    top: 75px;
+  }
+  100% {
+    top: 60px;
+    box-shadow: 0 0 10px rgba(255, 100, 100, 0.7);
+  }
+}

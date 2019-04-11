@@ -18,7 +18,8 @@ class App extends Component {
   componentDidMount() { }
   
   state = {
-    username: ""
+    username: "",
+    error: null
   }
 
   onChange = debounce(username => {
@@ -43,7 +44,7 @@ class App extends Component {
               
               <Switch>
                 <Route exact path="/" render={(props) => <Home {...props} username={this.state.username}/>}/>  
-                <Route path="*" component={NotFound} />
+                <Route path="/:username?" render={(props) => <Home {...props} username={this.state.username}/>} />
               </Switch>
             </ContentBody>
           </div>
