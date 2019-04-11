@@ -42,10 +42,10 @@
     "webpack": "^4.19.0"
   },
   "scripts": {
-    "start": "npm run start:server",
-    "start:server": "webpack && nodemon --exec babel-node -- bin/www",
+    "start": "nodemon --exec babel-node -- bin/www",
+    "start:server": "webpack && npm run start",
     "start:dev": "npm-run-all --parallel start:server WDS",
-    "setup": "yarn install && yarn start",
+    "setup": "yarn install && yarn start:server",
     "build": "webpack",
     "WDS": "webpack-dev-server --inline --hot --open",
     "WDSC": "webpack-dev-server --inline --hot --open 'Google Chrome'",
