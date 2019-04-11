@@ -9,6 +9,7 @@
 | | Veronica Cheren | 100831208 |
 | | Dindyal Mursingh | 101093659 |
 | | Kevin Lei | 101015906 |
+| | Amanda Braz | 101023003 |
 ## Project Setup
 ### Heroku URL: https://comp3133-twitch-gods.herokuapp.com/
 ### Original Repository: https://github.com/jaepun/comp3133_hackathon
