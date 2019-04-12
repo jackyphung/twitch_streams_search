@@ -71,21 +71,28 @@ class Home extends Component {
   getUserData = (username) => {
     this.setState({ error: null });
     if (username.length) {
-      helix.get("users", {
-        params: {
-          login: username
-        }
-      }).then((response) => {
-        if (response.data['data'].length) {
-          console.log(response.data["data"][0]);
-          this.setState({ user_data: response.data["data"][0]  }, () => {
-            history.push(`/${this.state.user_data.display_name}`);
-            this.getStreamData(this.state.user_data.id)
-          });
-        } else {
-          this.setState({ error: (<span><strong>{username}</strong> does not exist on <strong>Twitch</strong>.</span>) })
-        }
-      });
+      if (/^[a-zA-Z0-9_]*$/.test(username)) {
+        helix.get("users", {
+          params: {
+            login: username
+          }
+        })
+        .then((response) => {
+          if (response.data['data'].length) {
+            console.log(response.data["data"][0]);
+            this.setState({ user_data: response.data["data"][0]  }, () => {
+              history.push(`/${this.state.user_data.display_name}`);
+              this.getStreamData(this.state.user_data.id)
+            });
+          } else {
+            this.setState({ error: (<span><strong>{username}</strong> does not exist on <strong>Twitch</strong>.</span>) })
+          }
+        });
+      }
+      
+      else {
+        this.setState({ error: (<span><strong>{username}</strong> has non-alpanumeric characters; <strong>Twitch</strong> does not allow this in usernames.</span>) });
+      }
     }
   }
 
